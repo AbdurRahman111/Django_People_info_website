@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}{{get_posted_jobs_id.job_title}}{% endblock %}
+
+{% block body %}
+
+</br>
+</br>
+</br>
+<div class="container">
+  <h5 class="text-center"><p style="color:#07889E;">{{get_person_information.Full_name}}</p> <span class="badge badge-primary badge-pill">(Status - {{get_posted_jobs_id.job_post_status}})</span></h5><hr>
+</div>
+
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <img src="/media/{{get_person_information.image}}" class="card-img" alt="..." height="150" width="94">
+    </div>
+    <div class="col-md-6">
+        <ul class="list-group container">
+
+          <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>First Name :</b></div>
+                <div class="col-md-6">{{get_person_information.First_name}}</div>
+              </div>
+
+          </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Last Name :</b></div>
+                <div class="col-md-6">{{get_person_information.Last_name}}</div>
+              </div>
+
+          </li>
+
+          <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Other Name :</b></div>
+                <div class="col-md-6">{{get_person_information.Other_name}}</div>
+              </div>
+          </li>
+          <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>State Of Origin :</b> </div>
+                <div class="col-md-6">  {{get_person_information.State_of_Origin}}</div>
+              </div>
+          </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Sex :</b> </div>
+                <div class="col-md-6">  {{get_person_information.Sex}}</div>
+              </div>
+          </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Spoken Languages :</b> </div>
+                <div class="col-md-6"> {{get_person_information.Spoken_languages}}</div>
+              </div>
+          </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Complexione :</b> </div>
+                <div class="col-md-6">  {{get_person_information.Complexion}}</div>
+              </div>
+          </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Author :</b> </div>
+                <div class="col-md-6"> {{get_person_information.user.first_name}} {{get_person_information.user.last_name}}</div>
+              </div>
+          </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6"><b>Added Date :</b> </div>
+                <div class="col-md-6">  {{get_person_information.Adding_Time}}</div>
+              </div>
+          </li>
+
+
+        </ul>
+    </div>
+
+    <div class="col-md-2"></div>
+
+</div>
+
+
+</br>
+</br>
+</br>
+
+{% endblock %}

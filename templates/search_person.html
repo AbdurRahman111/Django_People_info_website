@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}{{Name}} - Search Results{% endblock %}
+
+{% block body %}
+<form class="container" method="GET" action="{% url 'search_person' %}">
+<div class="row toolbox">
+    <div class="col-md-2"></div>
+    <div class="col-md-2"><input type="text" name="Name" class="form-control" placeholder="Name*"></div>
+    <div class="col-md-2"><input type="text" name="State_of_origin" class="form-control" placeholder="State of origin*"></div>
+    <div class="col-md-2">
+        <select name="Complexion" id="job_type" class="form-control form-control form-control-lg">
+										<option selected="selected" value="All_Type">All Type</option>
+										<option value="Dark">Dark</option>
+										<option value="Chocolate">Chocolate</option>
+										<option value="Light">Light</option>
+										<option value="Bleached">Bleached</option>
+									</select>
+    </div>
+    <div class="col-md-2"><input type="submit" value="Seach Person" class="btn_1 full-width"></div>
+    <div class="col-md-2"></div>
+</div>
+</form>
+<div class="alert alert-warning container" role="alert">
+  <h6 class="text-center">About <b>{{search_person_count}}</b> Results Founds</h6>
+</div>
+
+
+                        {% if myseaech %}
+                        {% for k in myseaech %}
+
+                        <div class="card mb-3 container" style="max-width: 900px;">
+                          <div class="row no-gutters">
+                            <div class="col-md-2">
+                              <img src="/media/{{k.image}}" class="card-img" alt="..." height="150" width="100">
+                            </div>
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                  <h5 class="card-title"><a href="{% url 'person_details' k.id %}">{{k.First_name}} {{k.Last_name}}</a></h5>
+                                  <span class="text-muted"><b>Other Name:</b> {{k.Other_name}}</span><br>
+                                  <span class="text-muted"><b>State of Origin:</b> {{k.State_of_Origin}}</span><br>
+                                <p class="card-text"><small class="text-muted">Added Date : {{k.Adding_Time}}</small></p>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        {% endfor %}
+
+
+                {% elif Name %}
+                <div class="container">
+                    Your Search -
+
+                    Title : <b>{{Name}}</b>, Location : <b>{{State_of_origin}}</b> and <b>{{Complexion}}</b>
+                    ... - No result were found.</br>
+
+                    Suggestion:
+                    <ul>
+                        <li>Try using other Keyword</li>
+                        <li>Try using other Name</li>
+                        <li>Try using other State Of Origin</li>
+                    </ul>
+                </div>
+                {% endif %}
+
+
+</br>
+</br>
+
+
+                <div class="pagination__wrapper">
+						<ul class="pagination">
+							{% if list %}
+							<li>
+								{% if myseaech.has_previous %}
+
+                                <a href="?page={{myseaech.previous_page_number}}&Name={{ request.GET.Name }}&State_of_origin={{ request.GET.State_of_origin }}&Complexion={{ request.GET.Complexion }}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list %}
+							<li>
+
+                                <a href="?page={{i}}&Name={{ request.GET.Name }}&State_of_origin={{ request.GET.State_of_origin }}&Complexion={{ request.GET.Complexion }}" class="active">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if myseaech.has_next %}
+
+                                <a href="?page={{myseaech.next_page_number}}&Name={{ request.GET.Name }}&State_of_origin={{ request.GET.State_of_origin }}&Complexion={{ request.GET.Complexion }}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+						</ul>
+					</div>
+						<!-- /col -->
+
+
+</br>
+</br>
+</br>
+{% endblock %}
